@@ -21,7 +21,7 @@ struct RedOneView: View {
                     .offset(y: -60)
                 
                 NavigationLink(
-                    destination: BlueTwoView(),
+                    destination: OrangeTwoView(color: .orange),
                     label: {
                         Text("Next")
                             .bold()
@@ -32,18 +32,23 @@ struct RedOneView: View {
                     })
             }
         }
+        .accentColor(Color(.label))
     }
 }
 
-struct BlueTwoView: View {
+struct OrangeTwoView: View {
+    
+    var color: Color
+    
     var body: some View {
         VStack {
-            CircleNumberView(color: .blue, number: 2)
+            CircleNumberView(color: .orange, number: 2)
+                .navigationTitle("Orange Two")
                 //.navigationTitle("Blue Two")
                 .offset(y: -60)
             
             NavigationLink(
-                destination: Text("You have arrived!"),
+                destination: GreenThreeView(),
                 label: {
                     Text("Next")
                         .bold()
@@ -55,6 +60,20 @@ struct BlueTwoView: View {
         }
     }
 }
+
+
+struct GreenThreeView: View {
+    
+    var body: some View {
+        VStack {
+            CircleNumberView(color: .green, number: 3)
+                .navigationTitle("Green Three")
+                //.navigationTitle("Blue Two")
+                .offset(y: -60)
+        }
+    }
+}
+
 
 struct CircleNumberView: View {
     
@@ -76,5 +95,6 @@ struct CircleNumberView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         RedOneView()
+            .preferredColorScheme(.dark)
     }
 }
